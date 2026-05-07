@@ -346,14 +346,15 @@
   }
 
   .row-chevron {
+    display: inline-block;
     font-size: 9px;
     color: rgba(184,150,90,0.35);
-    margin-left: 8px;
+    margin-left: 6px;
     transition: transform 0.2s;
-    display: none;
+    vertical-align: middle;
   }
-  @media(min-width:701px){ .row-chevron { display: inline; } }
   .player-row.expanded .row-chevron { transform: rotate(180deg); }
+  @media(max-width:700px){ .row-chevron { display: none; } }
 
   .score {
     font-family: 'Playfair Display', serif;
@@ -428,23 +429,24 @@
   .ge-score.even  { color: var(--silver); }
 
   /* Mobile picks */
-  .mobile-picks {
-    display: none;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 6px;
-  }
+  .mobile-picks { display: none; }
   .m-pick {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-family: 'Crimson Pro', serif;
-    font-size: 12px;
+    font-size: 11px;
     padding: 2px 8px;
     border-radius: 10px;
     border: 1px solid rgba(184,150,90,0.2);
     color: rgba(244,240,232,0.6);
+    margin: 2px 2px 0 0;
+    background: rgba(244,240,232,0.06);
   }
   .m-pick-score {
-    margin-left: 4px;
-    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
   }
   .m-pick-score.under { color: #6ee090; }
   .m-pick-score.over  { color: #e07070; }
@@ -456,7 +458,8 @@
       padding: 12px 16px;
     }
     .outlook, .golfer-cell { display: none !important; }
-    .mobile-picks { display: flex; }
+    .mobile-picks { display: block; font-size: 11px; color: rgba(244,240,232,0.45); margin-top: 4px; }
+    .row-main { min-height: 56px; }
     .golfer-expand { padding: 0 16px 14px; }
     .player-row { cursor: default; }
     .player-row.expanded .golfer-expand { display: none; }
