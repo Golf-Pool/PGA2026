@@ -462,7 +462,8 @@
     .row-main { min-height: 56px; }
     .golfer-expand { padding: 0 16px 14px; }
     .player-row { cursor: default; }
-    .player-row.expanded .golfer-expand { display: none; }
+    .row-chevron { display: none; }
+    .golfer-expand { display: none !important; }
   }
 
   /* Payout banner */
@@ -694,13 +695,19 @@ function render(rows) {
       var gs = golferScores[idx];
       var pillStyle = '';
       var scoreHtml = '';
-      if (projectedCut !== null && gs !== null) {
-        if (gs >= 999 || gs > projectedCut) {
+      if (gs !== null) {
+        if (gs >= 999) {
           pillStyle = 'background:rgba(180,60,60,0.25);color:#e07070;border-color:rgba(180,60,60,0.3);';
-        } else if (gs === projectedCut) {
+        } else if (projectedCut !== null && gs > projectedCut) {
+          pillStyle = 'background:rgba(180,60,60,0.25);color:#e07070;border-color:rgba(180,60,60,0.3);';
+        } else if (projectedCut !== null && gs === projectedCut) {
+          pillStyle = 'background:rgba(200,160,40,0.25);color:#e8c97a;border-color:rgba(200,160,40,0.3);';
+        } else if (gs < 0) {
+          pillStyle = 'background:rgba(60,160,90,0.2);color:#6ee090;border-color:rgba(60,160,90,0.25);';
+        } else if (gs === 0) {
           pillStyle = 'background:rgba(200,160,40,0.25);color:#e8c97a;border-color:rgba(200,160,40,0.3);';
         } else {
-          pillStyle = 'background:rgba(60,160,90,0.2);color:#6ee090;border-color:rgba(60,160,90,0.25);';
+          pillStyle = 'background:rgba(180,60,60,0.25);color:#e07070;border-color:rgba(180,60,60,0.3);';
         }
       }
       if (gs !== null) {
